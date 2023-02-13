@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TypingTest from "./components/TypingTest";
+import {
+  ChakraProvider,
+  Container,
+  Flex,
+  useColorMode,
+  Heading,
+  Button,
+  useColorModeValue,
+  flexbox,
+} from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
+  const kbdBackground = useColorModeValue("gray.100", "gray.700");
+  const hlBackground = useColorModeValue("#dddd", "#262b2e");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Navbar />
+      <Container
+        style={{
+          display: "flexbox",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+        }}
+        maxW="750px"
+      >
+        <Flex marginTop={60} direction="column" padding={1}>
+          <TypingTest
+            kbdBackground={kbdBackground}
+            hlBackground={hlBackground}
+          />
+        </Flex>
+      </Container>
+    </ChakraProvider>
   );
-}
+};
 
 export default App;
